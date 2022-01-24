@@ -1,6 +1,5 @@
 from glob import glob
 import os
-import random
 import tensorflow as tf
 
 TFData = tf.data
