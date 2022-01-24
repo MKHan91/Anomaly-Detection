@@ -51,7 +51,6 @@ class AutoencoderDataloader(object):
     def read_tfrecord(self, data_path):
         if self.args.mode == 'train':
             TFR_path = os.path.join(data_path, '20200120_normal_tfrecord', '*.tfrecord')
-            # Files = TFData.Dataset.list_files(TFR_path)
             Files = TFData.Dataset.from_tensor_slices(glob(TFR_path))
             return Files, TFR_path
 

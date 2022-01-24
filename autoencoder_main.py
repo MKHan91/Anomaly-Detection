@@ -83,15 +83,8 @@ def train(calendar):
         config.gpu_options.allow_growth = True
         sess = tf.Session(config=config)
 
-        # SAVER
-        date = '_'.join(calendar)
-        thedate = '_'.join(calendar[0:3])
-        save_path = os.path.join(args.log_directory, args.model_name + '_' + thedate)
-        log_path = os.path.join(save_path, args.model_name + '_' + date)
-        # check_dir_or_create(dir=save_path)
-        # check_dir_or_create(dir=log_path)
 
-        summary_writer = tf.summary.FileWriter(logdir=log_path)
+        summary_writer = tf.summary.FileWriter(logdir=args.log_directory)
         train_saver = tf.train.Saver(max_to_keep=10)
 
         # COUNT PARAMS
@@ -107,7 +100,6 @@ def train(calendar):
         # coordinator = tf.train.Coordinator()
         # threads = tf.train.start_queue_runners(sess=sess, coord=coordinator)
 
-        # LOAD CHECKPOINT
         if args.checkpoint_path != '':
             train_saver.restore(sess=sess, save_path=args.checkpoint_path)
 
