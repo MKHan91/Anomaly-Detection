@@ -1,12 +1,12 @@
 from autoencoder_dataloader import AutoencoderDataloader
 from arch import VAE_models
 from average_gradients import *
-from datetime import datetime
-from code_save_server import *
 import matplotlib.pyplot as plt
+import tensorflow as tf
 import numpy as np
 import argparse
 import time
+import os
 
 parser = argparse.ArgumentParser(description='autoencoder of Myungkyu')
 parser.add_argument('--mode',               type=str,   help='train or test',                                           default='train')
@@ -30,7 +30,7 @@ parser.add_argument('--fully_summary',      type=bool, help='if set, will keep m
 
 args = parser.parse_args()
 
-def check_or_create_dir(dir):
+def make_directory(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
 
@@ -145,8 +145,7 @@ def train(calendar):
         print("Training Done!")
 
 def test():
-    # # DATA LOADING
-    dataloader = AutoencoderDataloader_server(args=args)
+    dataloader = AutoencoderDataloader(args=args)
 
     # test_num_samples = dataloader.test_num_samples
     # test_input = dataloader.test_input
@@ -196,7 +195,7 @@ def test():
     #     train_RMSE_list = []
     #     for bld_num in range(1, 61):
     #         # MAKE DIRECTORY
-    #         check_or_create_dir(dir=SAVE_PATH)
+    #         make_directory(dir=SAVE_PATH)
     #
     #         RMSE = tf.sqrt(
     #             tf.reduce_mean(
@@ -277,7 +276,7 @@ def test():
         for num_batch in range(args.test_batch_size):
             for bld_num in range(1, 61):
                 # MAKE DIRECTORY
-                check_or_create_dir(dir=SAVE_PATH)
+                make_directory(dir=SAVE_PATH)
 
                 RMSE = tf.sqrt(
                     tf.reduce_mean(
@@ -347,24 +346,21 @@ def test():
     print('Test done!!')
 
 
-def main(now):
-    year = now.year
-    month = now.month
-    day = now.day
+def main():
+    command = "mkdir " + os.path.join(os.getcwd(), "arch.py")
+    os.system(command)
 
-    hour = now.hour
-    minute = now.minute
-    sec = now.second
-    calendar = [str(year), '{:02d}'.format(month), '{:02d}'.format(day),
-                '{:02d}'.format(hour), '{:02d}'.format(minute), '{:02d}'.format(sec)]
+    command = "mkdir " + os.path.join(os.getcwd(), "autoencoder_dataloader.py")
+    os.system(command)
+    
+    command = "mkdir " + os.path.join(os.getcwd(), "autoencoder_main.py")
+    os.system(command)
 
     if args.mode == 'train':
-        code_save_server(args, calendar)
-        train(calendar)
+        train()
 
     elif args.mode == 'test':
         test()
 
 if __name__ == '__main__':
-    now = datetime.now()
-    main(now)
+    main()
