@@ -12,13 +12,13 @@ The code related to turbine diagnosis is preserved on *BVMS branch*, *master bra
 ## Open dataset
 It is an image dataset provided by AI challenge website called DACON. First, this is consisted of 6 types of crop images.  
 * Strawberry, Tomato, Paprika, Cucumber, Pepper, Grapes.  
-    <img src="./OpenDataset/10124.jpg" width="100" height="100"/>
+    <!-- <img src="./OpenDataset/10124.jpg" width="100" height="100"/>
     <img src="./OpenDataset/10442.jpg" width="100" height="100"/>
     <img src="./OpenDataset/10419.jpg" width="100" height="100"/>
     <img src="./OpenDataset/10117.jpg" width="100" height="100"/>
     <img src="./OpenDataset/10192.jpg" width="100" height="100"/>
-    <img src="./OpenDataset/10478.jpg" width="100" height="100"/>
-    (listed in order)  
+    <img src="./OpenDataset/10478.jpg" width="100" height="100"/> -->
+    <!-- (listed in order)   -->
 
 Second, 12 types of crop status and 4 types of degree of disease damage are consisted.
 
